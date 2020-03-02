@@ -1,7 +1,10 @@
 import telebot
 from telebot import types
 
-bot = telebot.TeleBot('------');
+from boto.s3.connection import S3Connection
+token = S3Connection(os.environ['TOKEN'])
+
+bot = telebot.TeleBot(token);
 
 #Список описаний
 dhelp = '\nВы можете продолжить вводить теги, или перейти назад при помощи кнопок.'
