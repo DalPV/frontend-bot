@@ -110,4 +110,8 @@ def get_calldata(call):
 			view_tags(call)
 			tags_mode = True
 
-bot.polling()
+while True:
+    try:
+        bot.polling(none_stop=True)
+    except Exception as e:
+        time.sleep(15)
