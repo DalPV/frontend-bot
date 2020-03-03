@@ -4,6 +4,8 @@ from telebot import types
 import os
 token = os.environ['TOKEN']
 
+import time
+
 bot = telebot.TeleBot(token);
 
 #Список описаний
