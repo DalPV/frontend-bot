@@ -4,9 +4,13 @@ from telebot import types
 import os
 token = os.environ['TOKEN']
 
+from flask import Flask, request
+
 import time
 
 bot = telebot.TeleBot(token);
+
+server = Flask(__name__)
 
 #Список описаний
 dhelp = '\nВы можете продолжить вводить теги, или перейти назад при помощи кнопок.'
@@ -112,8 +116,11 @@ def get_calldata(call):
 			view_tags(call)
 			tags_mode = True
 
-while True:
-    try:
-        bot.polling(none_stop=True)
-    except:
-        time.sleep(15)
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url='https://your_heroku_project.com/' + TOKEN)
+    return "!", 200
+
+if __name__ == "__main__":
+    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
