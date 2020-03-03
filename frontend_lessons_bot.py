@@ -115,5 +115,5 @@ def get_calldata(call):
 while True:
     try:
         bot.polling(none_stop=True)
-    except Exception as e:
+    except:
         time.sleep(15)
